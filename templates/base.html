@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% block title %}{% endblock %}
+	<link id="favicon" rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='favicon2.png') }}"/>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	<link rel="stylesheet" href="https://use.fontawesome.com/333037b2c7.css">
+
+	<!-- <script type="text/javascript">
+		window.onbeforeunload = function(){ window.scrollTo(0, 0) }
+	</script> -->
+</head>
+<body>
+
+	{% block body %}{% endblock %}
+	
+	<footer>
+		<p>Copyright &copy; Adam Miller 2020</p>
+	</footer>
+
+</body>
+</html>

@@ -26,4 +26,12 @@ def get_wilt():
 	}
 	return jsonify(data)
 
+@splash.route('/test')
+def test():
+	return render_template('err_404.html')
+
+@splash.errorhandler(404)
+def err_404(e):
+	return render_template('err_404.html'), 404
+
 app.register_blueprint(splash)

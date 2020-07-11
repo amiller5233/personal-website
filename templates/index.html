@@ -1,68 +1,55 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Adam Miller's Space</title>
-	<link id="favicon" rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='favicon2.png') }}"/>
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-	<link rel="stylesheet" href="https://use.fontawesome.com/333037b2c7.css">
+{% extends "base.html" %}
 
-	<script type="text/javascript">
-		window.onbeforeunload = function(){ window.scrollTo(0, 0) }
-	</script>
-</head>
-<body>
-	<div id="border"></div>
-	<header>
-		<img id="logo" src="{{ url_for('static', filename='logo_full.svg') }}" draggable="false">
-	</header>
+{% block title %}
+<title>Adam Miller's Space</title>
+{% endblock %}
 
-	{% set links = [
-		('LinkedIn', 'linkedin', 'https://www.linkedin.com/in/adam-miller-3b2b71127/', 'View my LinkedIn profile', 'blue'),
-		('Portfolio', 'book', '', '/ Work in progress /', 'purple'),
-		('GitHub', 'github', 'https://www.github.com/Babaganoosh76', 'See my GitHub profile'),
-		('Resume', 'file-text', 'https://drive.google.com/file/d/1Xxjl-RE47PY9QdvvuCfGrUkSaAEktabp/view?usp=sharing', 'Check out my resume', 'purple'),
-		('Spotify', 'spotify', '/spotify', 'Check out what I\'m currently listening to', 'green'),
-		('Musescore', 'music', 'https://www.musescore.com/babaganoosh76', 'Listen to some of my arrangements', 'blue'),
-		('YouTube', 'youtube', 'https://www.youtube.com/channel/UC_LIFVAPd40Cv8Hha3nRjuw', 'Check out some old vlogs I made', 'red'),
-		('Contact Me', 'envelope', 'mailto:amiller5233@gmail.com?subject=Hi Adam, it\'s great to meet you!', 'Reach out to me via email'),
-	] %}
+{% block body %}
+<div id="border"></div>
+<header>
+	<img id="logo" src="{{ url_for('static', filename='logo_full.svg') }}" draggable="false">
+</header>
 
-	<div class="container">
-		<h1>/&ensp;Hi, I'm Adam!&ensp;/</h1>
-		<p class="blurb">I am a recent graduate of Santa Clara University with a B.S. in Computer Science & Engineering. During my time in college, I learned a lot from programming classes and self-driven projects, and I continue to search for new things to learn about every day.<br><br>I'm currently searching for software engineering and web design related jobs, which will give me the opportunity to jumpstart my career and begin gaining valuable experience in the industry. Check out some of my work below!</p>
-		<ul class="grid">
-			{% for l in links %}
-			<li>
-				<h2>{{ l[0] }}</h2>
-				<a href="{{ l[2] }}" target="blank" class="b1-wrap">
-					<span class="b1-ring {{ l[4] or 'def' }}"></span>
-					<i class="b1-icon fa fa-{{ l[1] }}"></i>
-				</a>
-				<p>{{ l[3] }}</p>
-			</li>
-			{% endfor %}
-		</ul>
-	</div>
+{% set links = [
+	('LinkedIn', 'linkedin', 'https://www.linkedin.com/in/adam-miller-3b2b71127/', 'View my LinkedIn profile', 'blue'),
+	('Portfolio', 'book', '', '/ Work in progress /', 'purple'),
+	('GitHub', 'github', 'https://www.github.com/Babaganoosh76', 'See my GitHub profile'),
+	('Resume', 'file-text', 'https://drive.google.com/file/d/1Xxjl-RE47PY9QdvvuCfGrUkSaAEktabp/view?usp=sharing', 'Check out my resume', 'purple'),
+	('Spotify', 'spotify', '/spotify', 'Check out what I\'m currently listening to', 'green'),
+	('Musescore', 'music', 'https://www.musescore.com/babaganoosh76', 'Listen to some of my arrangements', 'blue'),
+	('YouTube', 'youtube', 'https://www.youtube.com/channel/UC_LIFVAPd40Cv8Hha3nRjuw', 'Check out some old vlogs I made', 'red'),
+	('Contact Me', 'envelope', 'mailto:amiller5233@gmail.com?subject=Hi Adam, it\'s great to meet you!', 'Reach out to me via email'),
+] %}
 
-	<!-- <div class="container">
-		<h1>Hello World, I'm Adam!</h1>
-		<p>Someday, this will be a stunning display of my mastery of web site design, but unfortunately, today is not that day.</p>
-		<p>Until then, feel free to check out my work on other various platforms:</p>
-		<ul>
-			<li><a href="https://www.github.com/Babaganoosh76" target="blank">Github</a></li>
-			<li><a href="https://www.linkedin.com/in/adam-miller-3b2b71127/" target="blank">LinkedIn</a></li>
-			<li><a href="https://www.musescore.com/babaganoosh76" target="blank">MuseScore</a></li>
-			<li><a href="https://www.youtube.com/channel/UC_LIFVAPd40Cv8Hha3nRjuw" target="blank">YouTube</a></li>
-			<li><a href="https://blog.amiller.space">Blog</a> (work in progress)</li>
-			<li><a href="/spotify" target="blank">Hear what I'm listening to</a></li>
-		</ul>
-		<p>Let's also take a moment to appriciate the subtle, but fierce shade of orange I've chosen to adorn my hyperlinks with. That ain't your mama's default blue hyperlink, oh no. CSS is in my blood, baby.</p>
-	</div> -->
+<div class="container">
+	<h1>/&ensp;Hi, I'm Adam!&ensp;/</h1>
+	<p class="blurb">I am a recent graduate of Santa Clara University with a B.S. in Computer Science & Engineering. During my time in college, I learned a lot from programming classes and self-driven projects, and I continue to search for new things to learn about every day.<br><br>I'm currently searching for software engineering and web design related jobs, which will give me the opportunity to jumpstart my career and begin gaining valuable experience in the industry. Check out some of my work below!</p>
+	<ul class="grid">
+		{% for l in links %}
+		<li>
+			<h2>{{ l[0] }}</h2>
+			<a href="{{ l[2] }}" target="blank" class="b1-wrap">
+				<span class="b1-ring {{ l[4] or 'def' }}"></span>
+				<i class="b1-icon fa fa-{{ l[1] }}"></i>
+			</a>
+			<p>{{ l[3] }}</p>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
 
-	<footer>
-		<p>Copyright &copy; Adam Miller 2020</p>
-	</footer>
-
-</body>
-</html>
+<!-- <div class="container">
+	<h1>Hello World, I'm Adam!</h1>
+	<p>Someday, this will be a stunning display of my mastery of web site design, but unfortunately, today is not that day.</p>
+	<p>Until then, feel free to check out my work on other various platforms:</p>
+	<ul>
+		<li><a href="https://www.github.com/Babaganoosh76" target="blank">Github</a></li>
+		<li><a href="https://www.linkedin.com/in/adam-miller-3b2b71127/" target="blank">LinkedIn</a></li>
+		<li><a href="https://www.musescore.com/babaganoosh76" target="blank">MuseScore</a></li>
+		<li><a href="https://www.youtube.com/channel/UC_LIFVAPd40Cv8Hha3nRjuw" target="blank">YouTube</a></li>
+		<li><a href="https://blog.amiller.space">Blog</a> (work in progress)</li>
+		<li><a href="/spotify" target="blank">Hear what I'm listening to</a></li>
+	</ul>
+	<p>Let's also take a moment to appriciate the subtle, but fierce shade of orange I've chosen to adorn my hyperlinks with. That ain't your mama's default blue hyperlink, oh no. CSS is in my blood, baby.</p>
+</div> -->
+{% endblock %}
