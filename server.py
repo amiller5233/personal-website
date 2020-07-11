@@ -35,3 +35,6 @@ def err_404(e):
 	return render_template('err_404.html'), 404
 
 app.register_blueprint(splash)
+
+if __name__ == '__main__':
+	app.run()
