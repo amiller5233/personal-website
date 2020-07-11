@@ -1,0 +1,73 @@
+body {
+	background: #333 radial-gradient(farthest-corner at 50% 80%, #000, #444) no-repeat fixed;
+}
+h1 {
+	font: 300 36px 'Open Sans';
+	text-align: center;
+	color: #fff;
+}
+p {
+	font: 300 16px 'Open Sans';
+	text-align: center;
+	color: #fff;
+	display: block;
+}
+a {
+	font: inherit;
+	color: inherit;
+}
+
+#loading p {
+	color: #999;
+}
+
+#wilt {
+	display: none;
+	/*opacity: 0;*/
+}
+#artwork_wrapper {
+	padding: 20px 0px;
+}
+#artwork {
+	display: block;
+	position: relative;
+	width: 400px;
+	margin: auto;
+	animation: artwork_hover 2s ease-in-out infinite alternate;
+}
+#artwork:after {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	/*background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,1));*/
+}
+#artwork > img {
+	width: 100%;
+}
+
+.fade_in {
+	animation: fade_in 1.2s ease-out forwards;	
+}
+
+@keyframes fade_in {
+	from {
+		transform: translateY(-30px);
+		opacity: 0;
+	}
+	to {
+		transform: none;
+		opacity: 1;
+	}
+}
+
+@keyframes artwork_hover {
+	from {
+		transform: translateY(-15px);
+	}
+	to {
+		transform: translateY(15px);
+	}
+}
