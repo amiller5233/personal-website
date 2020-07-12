@@ -1,23 +1,21 @@
-'''
-from flask import Flask, Blueprint, render_template, jsonify
-from spotify import *
+from flask import Blueprint, render_template, jsonify
+# from spotify import *
 
-splash = Blueprint('splash', __name__)
-app = Flask(__name__)
+bp_splash = Blueprint('splash', __name__)
 
-@splash.route('/', methods=['GET'])
+@bp_splash.route('/', methods=['GET'])
 def index():
 	return render_template('index.html')
 
-@splash.route('/spotify')
+@bp_splash.route('/spotify')
 def spotify():
 	return render_template('spotify.html')
 
-@splash.route('/visualizer')
+@bp_splash.route('/visualizer')
 def visualizer():
 	return render_template('visualizer.html')
 
-@splash.route('/get_wilt', methods=['GET'])
+@bp_splash.route('/get_wilt', methods=['GET'])
 def get_wilt():
 	song = sp_current_song()
 	html = render_template('wilt.html', data=song)
@@ -27,16 +25,10 @@ def get_wilt():
 	}
 	return jsonify(data)
 
-@splash.route('/test')
+@bp_splash.route('/test')
 def test():
 	return render_template('err_404.html')
 
-@splash.errorhandler(404)
+@bp_splash.errorhandler(404)
 def err_404(e):
 	return render_template('err_404.html'), 404
-
-app.register_blueprint(splash)
-
-if __name__ == '__main__':
-	app.run()
-'''
