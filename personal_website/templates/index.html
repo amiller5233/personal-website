@@ -26,14 +26,18 @@
 	<p class="blurb">I am a recent graduate of Santa Clara University with a B.S. in Computer Science & Engineering. During my time in college, I learned a lot from programming classes and self-driven projects, and I continue to search for new things to learn about every day.<br><br>I'm currently searching for software engineering and web design related jobs, which will give me the opportunity to jumpstart my career and begin gaining valuable experience in the industry. Check out some of my work below!</p>
 	<ul class="grid">
 		{% for l in links %}
-		<li>
-			<h2>{{ l[0] }}</h2>
-			<a href="{{ l[2] }}" target="blank" class="b1-wrap">
-				<span class="b1-ring {{ l[4] or 'def' }}"></span>
-				<i class="b1-icon fa fa-{{ l[1] }}"></i>
-			</a>
+		<li class="b1-wrap"><a href="{{ l[2] }}" target="blank">
+			<div>
+				<h2>{{ l[0] }}</h2>
+			</div>
+			<div class="b1-icon">
+			<!-- <a href="{{ l[2] }}" target="blank" class="b1-wrap"> -->
+				<span class="{{ l[4] }}"></span>
+				<i class="fa fa-{{ l[1] }}"></i>
+			</div>
+			<!-- </a> -->
 			<p>{{ l[3] }}</p>
-		</li>
+		</a></li>
 		{% endfor %}
 	</ul>
 </div>

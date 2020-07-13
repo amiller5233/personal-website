@@ -29,6 +29,6 @@ def get_wilt():
 def test():
 	return render_template('err_404.html')
 
-@bp_splash.errorhandler(404)
+@bp_splash.app_errorhandler(404)
 def err_404(e):
 	return render_template('err_404.html'), 404
