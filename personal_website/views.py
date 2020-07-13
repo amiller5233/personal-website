@@ -32,3 +32,7 @@ def test():
 @bp_splash.app_errorhandler(404)
 def err_404(e):
 	return render_template('err_404.html'), 404
+
+@bp_splash.app_errorhandler(500)
+def err_500(e):
+	return render_template('err_404.html'), 500
