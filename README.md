@@ -1,4 +1,4 @@
-![Adam Miller's Logo](https://amiller.space/static/logo_full.svg "Adam Miller's Logo" =250x)
+<img src="https://amiller.space/static/logo_full.svg" alt="Adam Miller's Logo" width="500">
 
 # My Personal Website
 
