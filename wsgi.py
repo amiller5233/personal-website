@@ -5,8 +5,8 @@ import sys
 import os
 
 # virtualenv
-if os.environ.get('FLASK_ENV') != 'development':
-	activate_this = '~/.virtualenvs/venv'
+if os.getenv('FLASK_ENV') != 'development':
+	activate_this = os.path.expanduser('~/.virtualenvs/venv')
 	with open(activate_this) as f:
 		exec(f.read(), dict(__file__=activate_this))
 
