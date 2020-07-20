@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, jsonify
-# from spotify import *
+from .spotify import *
 
 bp_splash = Blueprint('splash', __name__)
 

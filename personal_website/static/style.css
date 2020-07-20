@@ -66,6 +66,22 @@ p.blurb {
 	margin: auto;
 }
 
+.heading {
+	text-align: center;
+}
+.heading > * {
+	display: inline-block;
+	vertical-align: middle;
+}
+.heading .slash {
+	margin: 0px 40px;
+	vertical-align: middle;
+	height: 60px;
+	width: 2px;
+	background-color: #000;
+	transform: rotate(15deg);
+}
+
 /* GRIDS */
 ul.grid {
 	max-width: 1000px;
