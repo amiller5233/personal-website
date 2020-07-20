@@ -6,7 +6,7 @@ import os
 
 # virtualenv
 if os.getenv('FLASK_ENV') != 'development':
-	activate_this = os.path.expanduser('~/.virtualenvs/venv')
+	activate_this = os.getenv('VENV_ROOT') + 'personal-venv/bin/activate_this.py'
 	with open(activate_this) as f:
 		exec(f.read(), dict(__file__=activate_this))
 
