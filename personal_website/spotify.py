@@ -4,8 +4,6 @@ import json
 
 def sp_current_song():
 
-	print('hello')
-
 	with open('personal_website/sp_cache.json') as file:
 		return json.load(file)
 
