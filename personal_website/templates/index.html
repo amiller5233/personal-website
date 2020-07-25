@@ -11,8 +11,8 @@
 </header>
 
 {% set links = [
+	('Portfolio', 'book', '/portfolio', 'See examples of my work', 'purple'),
 	('LinkedIn', 'linkedin', 'https://www.linkedin.com/in/adam-miller-3b2b71127/', 'View my LinkedIn profile', 'blue'),
-	('Portfolio', 'book', '', '/ Work in progress /', 'purple'),
 	('GitHub', 'github', 'https://www.github.com/Babaganoosh76', 'See my GitHub profile'),
 	('Resume', 'file-text', 'https://drive.google.com/file/d/1Xxjl-RE47PY9QdvvuCfGrUkSaAEktabp/view?usp=sharing', 'Check out my resume', 'purple'),
 	('Spotify', 'spotify', '/spotify', 'Check out what I\'m currently listening to', 'green'),
@@ -29,7 +29,7 @@
 	<p class="blurb">I am a recent graduate of Santa Clara University with a B.S. in Computer Science & Engineering. During my time in college, I learned a lot from programming classes and self-driven projects, and I continue to search for new things to learn about every day.<br><br>I'm currently searching for software engineering and web design related jobs, which will give me the opportunity to jumpstart my career and begin gaining valuable experience in the industry. Check out some of my work below!</p>
 	<ul class="grid">
 		{% for l in links %}
-		<li class="b1-wrap"><a href="{{ l[2] }}" target="blank">
+		<li class="b1-wrap"><a href="{{ l[2] }}" target="">
 			<div>
 				<h2>{{ l[0] }}</h2>
 			</div>

@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template, jsonify
+from flask import Blueprint, render_template, abort, jsonify
+import os
+import json
 from .spotify import *
 
 bp_splash = Blueprint('splash', __name__)
@@ -6,6 +8,20 @@ bp_splash = Blueprint('splash', __name__)
 @bp_splash.route('/', methods=['GET'])
 def index():
 	return render_template('index.html')
+
+@bp_splash.route('/portfolio', methods=['GET'])
+def portfolio():
+	with open(os.getenv('CACHE') + 'portfolio.json') as file:
+		data = json.load(file)
+	return render_template('portfolio.html', data=data)
+
+@bp_splash.route('/portfolio/<pid>', methods=['GET'])
+def pf_details(pid):
+	with open(os.getenv('CACHE') + 'portfolio.json') as file:
+		data = json.load(file)
+	if pid not in data:
+		abort(404)
+	return render_template('details.html', item=data[pid])
 
 @bp_splash.route('/spotify')
 def spotify():

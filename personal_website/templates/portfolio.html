@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Adam Miller's Space - Portfolio</title>
+{% endblock %}
+
+{% block body %}
+<div id="border"></div>
+<header>
+	<img id="logo" src="{{ url_for('static', filename='logo_full.svg') }}" draggable="false">
+</header>
+
+<div class="container">
+	<div class="heading">
+		<span class="slash"></span><h1>Portfolio</h1><span class="slash"></span>
+	</div>
+	
+	<p class="blurb">Check out all of my work!</p>
+	<br>
+	<div style="text-align:center">
+		<label>Filter by project type:</label>
+		<select>
+			<option>All</option>
+			<option>Websites</option>
+			<option>Full-Stack Applications</option>
+			<option>Self-Driven Projects</option>
+		</select>
+	</div>
+
+	<ul id="portfolio" class="grid">
+		{% for code, item in data.items() %}
+		<li class="pf-wrap" tags="{{ item.tags|join(' ') }}">
+			<h2>{{ item.name }}</h2>
+			<p><i>{{ item.date_start }}{{ (" - " + item.date_end) if item.date_end else "" }}</i></p>
+			<a class="pf-cover" href="{{ url_for('splash.pf_details', pid=code) }}">
+				<img class="pf-img shadow" src="{{ url_for('static', filename=item.cover_img) }}">
+				{% if item.cover_gif %}
+				<img class="pf-img pf-gif" src="{{ url_for('static', filename=item.cover_gif) }}">
+				{% endif %}
+			</a>
+			<!-- <p>tags: {{ item.tags|join(" ") }}</p> -->
+			<p>{{ item.desc_short }}</p>
+			<a href="{{ url_for('splash.pf_details', pid=code) }}"><p>//&ensp;Details&ensp;//</p></a>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		console.log('reddy')
+	})
+</script>
+
+{% endblock %}
