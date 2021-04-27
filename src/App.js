@@ -1,4 +1,8 @@
+import { Switch, Route } from 'react-router-dom';
+
+/*
 import logo from './static/logo_full.svg';
+
 // import bi_file_richtext from './static/bi-file-earmark-richtext-fill.svg';
 import bi_file_text from './static/bi-file-earmark-text-fill.svg';
 import bi_github from './static/bi-github.svg';
@@ -8,11 +12,15 @@ import bi_linkedin from './static/bi-linkedin.svg';
 import bi_music_note from './static/bi-music-note-list.svg';
 import bi_spotify from './static/spotify.svg';
 import bi_youtube from './static/bi-youtube.svg';
-
+*/
 import './App.css';
+
+import Homepage from './containers/Homepage'
+import Portfolio from './containers/Portfolio'
 
 function App() {
 
+	/*
 	var links = [
 		['Portfolio', bi_journal, '/portfolio', 'See examples of my work', 'purple'],
 		['LinkedIn', bi_linkedin, 'https://www.linkedin.com/in/adam-miller-3b2b71127/', 'View my LinkedIn profile', 'blue'],
@@ -38,7 +46,15 @@ function App() {
 			</a></li>
 		)
 	})
+	*/
+	return (
+		<Switch>
+			<Route exact path="/" component={ Homepage }/>
+			<Route exact path="/portfolio" component={ Portfolio }/>
+		</Switch>
+	)
 
+	/*
 	return (
 		<div>
 			<header>
@@ -56,6 +72,7 @@ function App() {
 			</div>
 		</div>
 	)
+	*/
 }
 
 export default App;
