@@ -27,7 +27,7 @@ function Homepage() {
 		['LinkedIn', bi_linkedin, 'https://www.linkedin.com/in/adam-miller-3b2b71127/', 'View my LinkedIn profile', 'blue'],
 		['GitHub', bi_github, 'https://www.github.com/Babaganoosh76', 'See my GitHub profile'],
 		['Resume', bi_file_text, 'https://drive.google.com/file/d/1Xxjl-RE47PY9QdvvuCfGrUkSaAEktabp/view?usp=sharing', 'Check out my resume', 'purple'],
-		['Spotify', bi_spotify, '/spotify', 'Check out what I\'m currently listening to', 'green'],
+		// ['Spotify', bi_spotify, '/spotify', 'Check out what I\'m currently listening to', 'green'],
 		['Musescore', bi_music_note, 'https://www.musescore.com/babaganoosh76', 'Listen to some of my arrangements', 'blue'],
 		['YouTube', bi_youtube, 'https://www.youtube.com/channel/UC_LIFVAPd40Cv8Hha3nRjuw', 'Check out some old vlogs I made', 'red'],
 		['Contact Me', bi_inbox, 'mailto:amiller5233@gmail.com?subject=Hi Adam, it\'s great to meet you!', 'Reach out to me via email'],
@@ -56,12 +56,14 @@ function Homepage() {
 				<img id="logo" src={ logo } alt="Adam Miller's logo" draggable="false" />
 			</header>
 
-			<div className="container">
+			<div className="container" style={{'margin-bottom':'30px'}}>
 				<div className="heading">
-					<span className="slash"></span><h1>Hi, I'm Adam!</h1><span className="slash"></span>
+					<span className="slash"></span><h1> 👋 Hi, I'm Adam!</h1><span className="slash"></span>
 				</div>
 				
-				<p className="blurb">I am a recent graduate of Santa Clara University with a B.S. in Computer Science & Engineering. During my time in college, I learned a lot from programming classes and self-driven projects, and I continue to search for new things to learn about every day.<br/><br/>I'm currently searching for software engineering and web design related jobs, which will give me the opportunity to jumpstart my career and begin gaining valuable experience in the industry. Check out some of my work below!</p>
+				<p className="blurb">I’m an aspiring web designer and software developer in the Sacramento area. I have several years of professional experience in custom web design, web application development, project management, and a little bit of IT support.</p>
+				<p className="blurb">As a graduate of Santa Clara University with a B.S. in Computer Engineering, I have experience with machine learning, web accessibility, web information management, computer networks, and many others from my coursework.</p>
+				<p className="blurb">At this point in my career, I am eagerly searching for new opportunities where I can to continue to grow as a web designer and software developer. I love working with diverse teams, good communicators, any type of technology enthusiast!</p>
 				<ul className="grid">{ list }
 				</ul>
 			</div>

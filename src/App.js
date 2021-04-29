@@ -17,6 +17,7 @@ import './App.css';
 
 import Homepage from './containers/Homepage'
 import Portfolio from './containers/Portfolio'
+import Project from './containers/Project'
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
 		<Switch>
 			<Route exact path="/" component={ Homepage }/>
 			<Route exact path="/portfolio" component={ Portfolio }/>
+			<Route exact path="/project" component={ Project }/>
 		</Switch>
 	)
 
