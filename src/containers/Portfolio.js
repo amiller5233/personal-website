@@ -57,19 +57,21 @@ function Portfolio() {
 
 	const list = items.map(function(item, k){
 		return (
-			<li className="pf-wrap" tags="{{ item.tags|join(' ') }}">
+			<li key={ k } className="pf-wrap" tags={ item.tags.join() }>
 				<h2>{ item.name }</h2>
-				<p><i>{ item.date_start } - { item.date_end }</i></p>
+				<p><i>{ item.date_start }{ item.date_end?' - '+item.date_end:null }</i></p>
 				<Link to={{
 					pathname: '/project',
-					state: {project: 'Testing123'}
+					state: {project: item}
 				}} className="pf-cover">
-					<img className="pf-img shadow" src={ item.cover_img } />
-					<img className="pf-img pf-gif" src={ item.cover_gif } />
+					<img className="pf-img shadow" src={ item.cover_img } alt={ item.name+' image'}/>
+					<img className="pf-img pf-gif" src={ item.cover_gif } alt={ item.name+' animation'}/>
 				</Link>
-				{/*<p>tags: { item.tags }</p>*/}
 				<p>{ item.desc_short }</p>
-				<Link to="/project"><p>//&ensp;Details&ensp;//</p></Link>
+				<Link to={{
+					pathname: '/project',
+					state: {project: item}
+				}}><p>//&ensp;Details&ensp;//</p></Link>
 			</li>
 		)
 	})
@@ -77,7 +79,7 @@ function Portfolio() {
 	return (
 		<div>
 			<header>
-				<img id="logo" src={ logo } draggable="false" />
+				<img id="logo" src={ logo } draggable="false" alt="Adam Miller's logo"/>
 			</header>
 
 			<div className="container">
@@ -87,7 +89,7 @@ function Portfolio() {
 				
 				<p className="blurb">Check out all of my work!</p>
 				<br />
-				<div style={{'text-align':'center'}}>
+				<div style={{'textAlign':'center'}}>
 					<label>Filter by project type:</label>
 					<select>
 						<option>All</option>

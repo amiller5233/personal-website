@@ -9,14 +9,14 @@ import bi_inbox from '../static/bi-inbox-fill.svg';
 import bi_journal from '../static/bi-journal-bookmark-fill.svg';
 import bi_linkedin from '../static/bi-linkedin.svg';
 import bi_music_note from '../static/bi-music-note-list.svg';
-import bi_spotify from '../static/spotify.svg';
+// import bi_spotify from '../static/spotify.svg';
 import bi_youtube from '../static/bi-youtube.svg';
 
 function DynamicLink(props) {
 	if (!props.href)
 		return (<div>{ props.children }</div>)
 	if (props.href.includes(':'))
-		return (<a href={ props.href } target="_blank">{ props.children }</a>)
+		return (<a href={ props.href } target="_blank" rel="noreferrer">{ props.children }</a>)
 	return (<Link to={ props.href }>{ props.children }</Link>)
 }
 
@@ -56,7 +56,7 @@ function Homepage() {
 				<img id="logo" src={ logo } alt="Adam Miller's logo" draggable="false" />
 			</header>
 
-			<div className="container" style={{'margin-bottom':'30px'}}>
+			<div className="container" style={{'marginBottom':'30px'}}>
 				<div className="heading">
 					<span className="slash"></span><h1> 👋 Hi, I'm Adam!</h1><span className="slash"></span>
 				</div>
