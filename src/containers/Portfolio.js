@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import logo from '../static/logo_full.svg';
+import MyLogo from '../components/MyLogo'
 
 import sti_home from '../static/sti/sti_home.png';
 import sti_gif from '../static/sti/sti_gif.gif';
@@ -10,7 +10,6 @@ import tra_gif from '../static/tra/tra_gif.gif';
 import ubs_home from '../static/ubs/ubs_home.png';
 import ubs_gif from '../static/ubs/ubs_gif.gif';
 import cpd_home from '../static/cpd/cpd_home.png';
-// import cpd_gif from '../static/cpd/cpd_gif.gif';
 
 function Portfolio() {
 
@@ -58,15 +57,16 @@ function Portfolio() {
 	const list = items.map(function(item, k){
 		return (
 			<li key={ k } className="pf-wrap" tags={ item.tags.join() }>
-				<h2>{ item.name }</h2>
-				<p><i>{ item.date_start }{ item.date_end?' - '+item.date_end:null }</i></p>
+				
 				<Link to={{
 					pathname: '/project',
 					state: {project: item}
-				}} className="pf-cover">
+				}} className="pf-cover ">
 					<img className="pf-img shadow" src={ item.cover_img } alt={ item.name+' image'}/>
-					<img className="pf-img pf-gif" src={ item.cover_gif } alt={ item.name+' animation'}/>
+					<img className="pf-img pf-gif" src={ item.cover_gif } />
 				</Link>
+				<h2 className="underline">{ item.name }</h2>
+				<p className="muted">{ item.date_start }{ item.date_end?' - '+item.date_end:null }</p>
 				<p>{ item.desc_short }</p>
 				<Link to={{
 					pathname: '/project',
@@ -78,20 +78,16 @@ function Portfolio() {
 
 	return (
 		<div>
-			<header>
-				<img id="logo" src={ logo } draggable="false" alt="Adam Miller's logo"/>
-			</header>
+			<MyLogo />
 
 			<div className="container">
 				<div className="heading">
-					<span className="slash"></span><h1>Portfolio</h1><span className="slash"></span>
+					<span className="slash"></span><h1>My Portfolio</h1><span className="slash"></span>
 				</div>
-				
-				<p className="blurb">Check out all of my work!</p>
-				<br />
-				<div style={{'textAlign':'center'}}>
+
+				<div style={{'textAlign':'center', 'marginBottom':'1.5rem'}}>
 					<label>Filter by project type:</label>
-					<select>
+					<select style={{'margin':'0 10px'}}>
 						<option>All</option>
 						<option>Websites</option>
 						<option>Full-Stack Applications</option>
@@ -99,9 +95,7 @@ function Portfolio() {
 					</select>
 				</div>
 
-				<ul id="portfolio" className="grid">
-					{ list }
-				</ul>
+				<ul className="grid" style={{'maxWidth':'1300px'}}>{ list }</ul>
 				
 			</div>
 		</div>
