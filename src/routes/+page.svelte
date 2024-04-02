@@ -3,6 +3,8 @@
 	import { onMount } from 'svelte';
 
 	import BlockLink from '$lib/components/BlockLink.svelte';
+	import GridLink from '$lib/components/GridLink.svelte';
+	import StripeHeading from '$lib/components/StripeHeading.svelte';
 
 	onMount(async () => {
 		import ('$lib/stripe-heading.js');
@@ -10,26 +12,31 @@
 
 			// p5 instance
 			const sketch = (p5) => {
+				let canvasWidth = p5.windowWidth;
+				let canvasHeight = p5.windowHeight * 1.1;
 				const DOT_SIZE = 8;
 				const DOT_GAP = 40;
 
-				const SPRITE_LAG = 15;
+				const SPRITE_LAG = 12;
 				let spriteVector = p5.createVector(0,0);
 
-				// get length from center of canvas to the corner
-				let hyp = Math.floor(Math.sqrt(Math.pow(p5.windowWidth,2) + Math.pow(p5.windowHeight,2)));
-				// divide by DOT_GAP
-				let exact_size = hyp / DOT_GAP;
-				// round up to nearest odd number (odd needed for symmetrical shape)
-				let rounded_size = 2 * Math.round(Math.ceil(exact_size / 2)) + 1;
-				// calculations don't quite add up, add 1.2x
-				const SIZE = rounded_size * 1.2;
+				const _calc_size = () => {
+					// get length from center of canvas to the corner
+					let hyp = Math.floor(Math.sqrt(Math.pow(canvasWidth,2) + Math.pow(canvasHeight,2)));
+					// divide by DOT_GAP
+					let exact_size = hyp / DOT_GAP;
+					// round up to nearest odd number (odd needed for symmetrical shape)
+					let rounded_size = 2 * Math.round(Math.ceil(exact_size / 2)) + 1;
+					// calculations don't quite add up, add 1.2x
+					return rounded_size * 1.2;
+				}
+				let SIZE = _calc_size();
 
 				let debugMode = false;
 
 
 				p5.setup = () => {
-					p5.createCanvas(p5.windowWidth, p5.windowHeight, document.getElementById('canvas-hero'));
+					p5.createCanvas(canvasWidth, canvasHeight, document.getElementById('canvas-hero'));
 					p5.fill(0);
 					p5.noStroke();
 
@@ -84,82 +91,100 @@
 						}
 					}
 				};
+
+				p5.windowResized = () => {
+					p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
+					SIZE = _calc_size();
+				}
 			}
 			new p5(sketch);
 		});
-		
 	});
 </script>
 
 <section class="hero-container">
-	<div class="hero-pane brand-pane" style="z-index:1;">
-		<div style="width: 100%;">
-			<img id="logo" src="logo_full.svg" draggable="false" alt="Adam Miller's logo">
-			<h1 style="text-align:center;">Hi, I'm Adam! 👋</h1>
+	<div class="content-pane">
+		<div class="flex flex-col md:flex-row items-center gap-6">
+			<img id="logo" src="favicon.png" width="128" height="128" draggable="false" alt="Adam Miller's logo" class="bg-white rounded-3xl shadow-lg p-2">
+			<div>
+				<div class="stripe-heading" style="margin:0;">
+					<div class="heading" style="margin:0;">
+						<h1 class="label text-3xl lg:text-5xl font-display">Howdy, I'm Adam ✌️</h1>
+					</div>
+				</div>
+				<p class="text-lg lg:text-xl">a full-stack developer from California,</p>
+				<p class="text-lg lg:text-xl">who loves building websites with <span>✨personality✨</span></p>
+			</div>
 		</div>
 	</div>
-	<canvas id="canvas-hero" class="hero-pane"></canvas>
+	<div class="scroll-pane ">
+		<div class="flex flex-col gap-4 text-gray-400 items-center">
+			<p class="text-sm uppercase">Scroll for a cookie ;)</p>
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+		</div>
+	</div>
+	<canvas id="canvas-hero" class="canvas-pane"></canvas>
+	<div class="canvas-pane-fade"></div>
 </section>
 
 <section>
-	<div class="stripe-heading">
-		<div class="stripe"></div>
-		<div class="heading">
-			<h2 class="label">MY PORTFOLIO</h2>
-		</div>
-		<div class="stripe"></div>
-	</div>
+	<div class="lg:container lg:mx-auto mx-4 py-10">
+		<StripeHeading label="About Me"></StripeHeading>
 
-	<div style="padding-top:3rem; padding-bottom:3rem;">
-		<p>I am a recent graduate of Santa Clara University with a B.S. in Computer Science & Engineering. During my time in college, I learned a lot from programming classes and self-driven projects, and I continue to search for new things to learn about every day.<br><br>I'm currently searching for software engineering and web design related jobs, which will give me the opportunity to jumpstart my career and begin gaining valuable experience in the industry. Check out some of my work below!</p>
-		<ul class="grid">
-			<BlockLink
-				label="Portfolio"
-				icon="book"
-				href="/portfolio"
-				description="View my LinkedIn profile"
-				color="purple">
-			</BlockLink>
-			<BlockLink
-				label="LinkedIn"
-				icon="linkedin"
-				href="https://www.linkedin.com/in/adam-miller-3b2b71127/"
-				description="See examples of my work"
-				color="blue">
-			</BlockLink>
-			<BlockLink
+		<div class="flex flex-col md:flex-row md:columns-2">
+			<div class="w-full">
+				<p>Just a sleevgy lil guy. </p>
+			</div>
+			<div class="w-full">
+				<p>pic (felt cute might delete later?)</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class="lg:container lg:mx-auto mx-4 py-10">
+		<StripeHeading label="My Portfolio"></StripeHeading>
+
+		<p>Look at MY COOL SHIT</p>
+		<a href="/portfolio" class="font-bold underline decoration-cyan-500">Portfolio</a>
+	</div>
+</section>
+
+<section>
+	<div class="lg:container lg:mx-auto mx-4 py-10">
+		<StripeHeading label="Experience"></StripeHeading>
+
+		<p>Look at MY resume</p>
+		<a href="/portfolio" class="font-bold underline decoration-cyan-500">Resume</a>
+	</div>
+</section>
+
+<section>
+	<div class="lg:container lg:mx-auto mx-4 py-10">
+		<StripeHeading label="Other Stuff"></StripeHeading>
+
+		<p class="text-center mx-auto my-6" style="max-width:700px;">I have learned a thousand skills across a thousand different lives... Actually, I just do a lot of random stuff. Here's my prized collections of odds and ends.</p>
+
+		<div class="grid md:grid-cols-3 gap-4 my-6">
+			<GridLink
 				label="Github"
-				icon="github"
 				href="https://www.github.com/amiller5233"
-				description="See my GitHub profile">
-			</BlockLink>
-			<BlockLink
-				label="Resume"
-				icon="file-text"
-				href="https://drive.google.com/file/d/1Xxjl-RE47PY9QdvvuCfGrUkSaAEktabp/view?usp=sharing"
-				description="Check out my resume"
-				color="purple">
-			</BlockLink>
-			<BlockLink
+				description="Don't judge my on anything I comitted over 2 years ago">
+				<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg>
+			</GridLink>
+			<GridLink
 				label="Musescore"
-				icon="music"
 				href="https://www.musescore.com/babaganoosh76"
-				description="Listen to some of my arrangements"
-				color="blue">
-			</BlockLink>
-			<BlockLink
+				description="Yes, I am an unapologetic band geek">
+				<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-music-note-list" viewBox="0 0 16 16"><path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2"/><path fill-rule="evenodd" d="M12 3v10h-1V3z"/><path d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1z"/><path fill-rule="evenodd" d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5m0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5m0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5"/></svg>
+			</GridLink>
+			<GridLink
 				label="YouTube"
-				icon="youtube"
 				href="https://www.youtube.com/channel/UC_LIFVAPd40Cv8Hha3nRjuw"
-				description="Check out some old vlogs I made"
-				color="red">
-			</BlockLink>
-			<BlockLink
-				label="Contact Me"
-				icon="envelope"
-				href="mailto:amiller5233@gmail.com?subject=Hi Adam, it's great to meet you!"
-				description="Reach out to me via email">
-			</BlockLink>
-		</ul>
+				description="Trying my best Ryan Trahan impression">
+				<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/></svg>
+			</GridLink>
+		</div>
 	</div>
 </section>
