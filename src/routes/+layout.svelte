@@ -1,5 +1,5 @@
 <script>
-	import '../app.scss';
+	import '../scss/style.scss';
 	const currentYear = (new Date().getFullYear());
 </script>
 

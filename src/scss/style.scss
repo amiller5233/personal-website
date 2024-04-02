@@ -1,0 +1,45 @@
+
+@import 'fonts';
+@import 'stripe-heading';
+
+body {
+	overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Futura Extra Bold Condensed Oblique";
+	font-weight: 700;
+}
+
+p {
+	font-family: "Helvetica";
+	font-weight: 400;
+}
+
+.hero-container {
+	width: 100vw;
+	height: 100vh;
+
+	h1 {
+		font-size: 3rem;
+	}
+	
+	.hero-pane {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	.brand-pane {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+footer {
+	background-color: #eee;
+	padding: 20px 0px 40px;
+	text-align: center;
+}

@@ -1,9 +1,11 @@
 
 <script lang="ts">
 	import { onMount } from 'svelte';
+
 	import BlockLink from '$lib/components/BlockLink.svelte';
 
 	onMount(async () => {
+		import ('$lib/stripe-heading.js');
 		import ('$lib/p5.min.js').then(res => {
 
 			// p5 instance
@@ -23,7 +25,7 @@
 				// calculations don't quite add up, add 1.2x
 				const SIZE = rounded_size * 1.2;
 
-				let debugMode = true;
+				let debugMode = false;
 
 
 				p5.setup = () => {
@@ -60,8 +62,9 @@
 						let x = xOrigin + vector.x;
 						let y = yOrigin + vector.y;
 						let d = p5.dist(spriteVector.x, spriteVector.y, x, y);
-						let r = DOT_SIZE * (1 + 3*p5.exp(-0.01 * d));
-						p5.fill(240);
+						let d_exp = p5.exp(-0.01 * d);
+						let r = DOT_SIZE * (1 + 3*d_exp);
+						p5.fill(240 - 30*d_exp);
 						p5.circle(x, y, r);
 					}
 
@@ -92,19 +95,23 @@
 	<div class="hero-pane brand-pane" style="z-index:1;">
 		<div style="width: 100%;">
 			<img id="logo" src="logo_full.svg" draggable="false" alt="Adam Miller's logo">
-			<div class="heading">
-				<span class="slash"></span>
-				<h1>Hi, I'm Adam! 👋</h1>
-				<span class="slash"></span>
-			</div>
+			<h1 style="text-align:center;">Hi, I'm Adam! 👋</h1>
 		</div>
 	</div>
 	<canvas id="canvas-hero" class="hero-pane"></canvas>
 </section>
 
 <section>
+	<div class="stripe-heading">
+		<div class="stripe"></div>
+		<div class="heading">
+			<h2 class="label">MY PORTFOLIO</h2>
+		</div>
+		<div class="stripe"></div>
+	</div>
+
 	<div style="padding-top:3rem; padding-bottom:3rem;">
-		<p class="blurb">I am a recent graduate of Santa Clara University with a B.S. in Computer Science & Engineering. During my time in college, I learned a lot from programming classes and self-driven projects, and I continue to search for new things to learn about every day.<br><br>I'm currently searching for software engineering and web design related jobs, which will give me the opportunity to jumpstart my career and begin gaining valuable experience in the industry. Check out some of my work below!</p>
+		<p>I am a recent graduate of Santa Clara University with a B.S. in Computer Science & Engineering. During my time in college, I learned a lot from programming classes and self-driven projects, and I continue to search for new things to learn about every day.<br><br>I'm currently searching for software engineering and web design related jobs, which will give me the opportunity to jumpstart my career and begin gaining valuable experience in the industry. Check out some of my work below!</p>
 		<ul class="grid">
 			<BlockLink
 				label="Portfolio"
@@ -156,26 +163,3 @@
 		</ul>
 	</div>
 </section>
-
-<style>
-	h1 {
-		font-weight: 700;
-		font-size: 3rem;
-	}
-	.hero-container {
-		width: 100vw;
-		height: 100vh;
-	}
-	.hero-pane {
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
-	.brand-pane {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-</style>
