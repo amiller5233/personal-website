@@ -7,7 +7,7 @@ export const oldPortfolio = {
 		"date_start":"Summer 2017",
 		"date_end":"Present",
 		"github_url": "https://github.com/amiller5233/sundance-transport-homepage/tree/v2",
-		"url":"https://sundance-transport-homepage.pages.dev/#",
+		"url":"https://staging.sundancetransportinc.com",
 		"tags":["website"]
 	},
 	"truck-routing-application":{
