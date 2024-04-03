@@ -66,6 +66,26 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 
+.hover\:text-chromatic { 
+	transition: text-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+	&:hover {
+		text-shadow: 2px -4px 0 rgb(0, 242, 234),
+		            -2px 4px 0 rgb(255, 0, 80);
+	}
+}
+
+.hover\:box-chromatic {
+	transition: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+	&:hover {
+		box-shadow: 2px -4px 0 rgb(0, 242, 234),
+		            -2px 4px 0 rgb(255, 0, 80);
+	}
+}
+
+.hero-img-clip {
+	clip-path: url('#blob2');
+}
+
 .cursor:after {
 	content: "";
 	width: 3px;

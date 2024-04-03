@@ -4,7 +4,7 @@ export default {
   theme: {
     fontFamily: {
       display: "Futura Extra Bold Condensed Oblique",
-      body: "Noto Sans, Helvetica, sans-serif"
+      body: "Open Sans, Helvetica, sans-serif"
     },
     extend: {
 
