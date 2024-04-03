@@ -1,6 +1,9 @@
 <script>
 	import '../scss/style.scss';
 	import { onMount } from 'svelte';
+	import { afterNavigate } from '$app/navigation';
+
+	import { initStripeHeaders } from '$lib/stripe-heading.js';
 
 	const currentYear = (new Date().getFullYear());
 
@@ -15,18 +18,26 @@
 		}
 		setCookie("scrollCookie", "Here's your promised cookie. Enjoy!");
 	});
+
+	afterNavigate(() => {
+		// heading animations
+		initStripeHeaders();
+	})
 </script>
 
 <nav class="absolute w-full z-20 top-0 start-0">
 	<div class="flex items-center justify-between flxe-wrap max-w-screen-xl mx-4 xl:mx-auto py-6">
 		<a href="/" class="flex items-center">
 			<!-- <img src="logo-full.svg" width="150" height="45" alt="Adam Miller Logo"> -->
-			<img src="favicon.png" width="56" height="56" draggable="false" alt="Adam Miller icon" class="bg-white rounded-lg shadow p-1 hover:box-chromatic">
+			<img src="/favicon.png" width="56" height="56" draggable="false" alt="Adam Miller icon" class="bg-white rounded-lg shadow p-1 hover:box-chromatic">
 		</a>
 		<div class="flex items-center justify-between w-auto">
 			<ul class="flex p-0 space-x-8">
 				<li>
-					<a href="portfolio" class="text-gray-800 font-display uppercase hover:text-chromatic">Portfolio</a>
+					<a href="/" class="text-gray-800 font-display uppercase hover:text-chromatic">Home</a>
+				</li>
+				<li>
+					<a href="/portfolio" class="text-gray-800 font-display uppercase hover:text-chromatic">Portfolio</a>
 				</li>
 				<!-- <li>
 					<a href="#" class="font-display uppercase">About</a>
@@ -44,7 +55,7 @@
 	<div class="mx-4 max-w-screen-lg lg:mx-auto">
 		<div class="flex flex-col md:flex-row md:columns-2 gap-8">
 			<div class="w-full">
-				<img src="favicon.png" width="36" height="36" alt="Adam Miller icon" class="bg-white rounded-lg shadow mb-2 hover:box-chromatic">
+				<img src="/favicon.png" width="36" height="36" alt="Adam Miller icon" class="bg-white rounded-lg shadow mb-2 hover:box-chromatic">
 				<p class="text-lg font-display">Adam Miller</p>
 				<p class="text-sm text-gray-500">copyright &copy; Adam Miller { currentYear }</p>
 			</div>

@@ -1,6 +1,5 @@
 
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import P5 from 'p5-svelte';
 
@@ -8,11 +7,8 @@
 	import GridLink from '$lib/components/GridLink.svelte';
 	import StripeHeading from '$lib/components/StripeHeading.svelte';
 	import ExperienceItem from '$lib/components/ExperienceItem.svelte';
+	import Hexicon from '$lib/components/Hexicon.svelte';
 
-	// heading animations
-	onMount(async () => {
-		import ('$lib/stripe-heading.js');
-	});
 
 	// hero background
 	const sketch = (p5) => {
@@ -206,8 +202,6 @@
 			timeRange="January 2018 - June 2019"
 			description="uBridge is a networking startup looking to connect students and facilitate interdisciplinary collaboration in the university environment. My primary responsibilities on the team were designing and maintaining the front-end of the application, as well as assisting with some of the core functionality on the back-end."
 		></ExperienceItem>
-
-
 
 		<div class="text-center mt-6">
 			<a href="pdf/resume_adam_miller.pdf" class="font-bold underline decoration-cyan-500 hover:text-cyan-500 transition-colors">My Full Resume</a>
