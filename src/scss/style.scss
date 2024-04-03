@@ -65,3 +65,20 @@ h1, h2, h3, h4, h5, h6 {
 		z-index: 10;
 	}
 }
+
+.cursor:after {
+	content: "";
+	width: 3px;
+	height: 30px;
+	margin-left: 4px;
+	background: #0000ff;
+	display: inline-block;
+	animation: cursor-blink 600ms steps(2) infinite;
+	vertical-align: middle;
+}
+@keyframes cursor-blink {
+	0% {
+		opacity: 0;
+	}
+}
+

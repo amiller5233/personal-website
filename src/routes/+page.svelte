@@ -1,17 +1,19 @@
 
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 	import P5 from 'p5-svelte';
 
 	import BlockLink from '$lib/components/BlockLink.svelte';
 	import GridLink from '$lib/components/GridLink.svelte';
 	import StripeHeading from '$lib/components/StripeHeading.svelte';
 
+	// heading animations
 	onMount(async () => {
 		import ('$lib/stripe-heading.js');
 	});
 
-		
+	// hero background
 	const sketch = (p5) => {
 		let canvasWidth = p5.windowWidth;
 		let canvasHeight = p5.windowHeight * 1.1;
@@ -98,6 +100,27 @@
 			SIZE = _calc_size();
 		}
 	}
+
+	// personality animation
+	let styles = [
+		`<span class="underline">personality</span>`,
+		`<span class="cursor" style="font-family: 'Courier New';">personality</span>`,
+		`<span class="font-display uppercase" style="text-shadow:-2px 4px 0 rgb(255, 0, 80);">personality!</span>`,
+		`✨<span class="italic">personality</span>✨`,
+		`<span class="inline-block bg-green-700 uppercase font-bold text-base text-white border-4 border-double border-white align-middle px-3 rounded-md shadow-lg" style>personality</span>`,
+		`<span class="border-b-2 border-dashed border-red-500" style="font-family: 'Georgia', serif;">perosnality</span>`,
+		`<span style="font-family: 'Brush Script MT', serif;">personality</span> 💅`,
+		`<span class="inline-block leading-none" style="transform: scaleY(-1);">personality</span>`,
+	];
+	let currentStyleIndex = 0;
+	let currentStyle = styles[currentStyleIndex++];
+	setInterval(() => {
+		currentStyle = styles[currentStyleIndex++];
+		if (currentStyleIndex >= styles.length) {
+			currentStyleIndex = 0;
+		}
+	}, 1400);
+	
 </script>
 
 <section class="hero-container">
@@ -110,8 +133,8 @@
 						<h1 class="label text-3xl lg:text-5xl font-display">Howdy, I'm Adam ✌️</h1>
 					</div>
 				</div>
-				<p class="text-lg lg:text-xl">a full-stack developer from California,</p>
-				<p class="text-lg lg:text-xl">who loves building websites with <span>✨personality✨</span></p>
+				<p class="text-lg lg:text-2xl">a full-stack developer from California,</p>
+				<p class="text-lg lg:text-2xl">who loves building websites with {#key currentStyle}<span in:fade="{{ duration: 300 }}" class="inline-block" style="height:36px; width:180px;">{@html currentStyle}</span>{/key}</p>
 			</div>
 		</div>
 	</div>
@@ -122,7 +145,7 @@
 		</div>
 	</div>
 	<!-- <canvas id="canvas-hero" class="canvas-pane"></canvas> -->
-	<P5 {sketch} class="test" />
+	<P5 {sketch} />
 	<div class="canvas-pane-fade"></div>
 </section>
 
