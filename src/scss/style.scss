@@ -1,0 +1,105 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'fonts';
+@import 'hexicon';
+@import 'stripe-heading';
+
+$body-bg: #fffdfd;
+$accent1: rgb(0, 242, 234);
+$accent2: rgb(255, 0, 80);
+
+body {
+	overflow-x: hidden;
+	@apply font-body;
+	@apply text-gray-800;
+	background-color: $body-bg;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	@apply font-display;
+}
+
+.hero-container {
+	position: relative;
+	width: 100vw;
+	height: 110vh;
+
+	// h1 {
+	// 	font-size: 3rem;
+	// }
+	
+	canvas,
+	.canvas-pane {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	.canvas-pane-fade {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 10vh;
+		background: linear-gradient(180deg, transparent, $body-bg);
+	}
+	.content-pane {
+		position: relative;
+		width: 100vw;
+		height: 80vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 10;
+	}
+	.scroll-pane {
+		position: relative;
+		width: 100vw;
+		height: 20vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 10;
+	}
+}
+
+.hover\:text-chromatic { 
+	transition: text-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+	&:hover {
+		text-shadow: 2px -4px 0 rgb(0, 242, 234),
+		            -2px 4px 0 rgb(255, 0, 80);
+	}
+}
+
+.hover\:box-chromatic {
+	transition: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+	&:hover {
+		box-shadow: 2px -4px 0 rgb(0, 242, 234),
+		            -2px 4px 0 rgb(255, 0, 80);
+	}
+}
+
+.hero-img-clip {
+	clip-path: url('#blob2');
+}
+
+.cursor:after {
+	content: "";
+	width: 3px;
+	height: 30px;
+	margin-left: 4px;
+	background: #0000ff;
+	display: inline-block;
+	animation: cursor-blink 600ms steps(2) infinite;
+	vertical-align: middle;
+}
+@keyframes cursor-blink {
+	0% {
+		opacity: 0;
+	}
+}
+
