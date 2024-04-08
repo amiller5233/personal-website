@@ -5,6 +5,8 @@
 
 	import { initStripeHeaders } from '$lib/stripe-heading.js';
 
+	import ThemeSelector from '$lib/components/ThemeSelector.svelte';
+
 	const currentYear = (new Date().getFullYear());
 
 	onMount(() => {
@@ -32,16 +34,17 @@
 			<img src="/favicon.png" width="56" height="56" draggable="false" alt="Adam Miller icon" class="bg-white rounded-lg shadow p-1 hover:box-chromatic">
 		</a>
 		<div class="flex items-center justify-between w-auto">
-			<ul class="flex p-0 space-x-8">
+			<ul class="flex items-center p-0 space-x-8">
 				<li>
-					<a href="/" class="text-gray-800 font-display uppercase hover:text-chromatic">Home</a>
+					<a href="/" class="text-gray-800 font-display uppercase leading-none py-2 hover:text-chromatic">Home</a>
 				</li>
 				<li>
-					<a href="/portfolio" class="text-gray-800 font-display uppercase hover:text-chromatic">Portfolio</a>
+					<a href="/portfolio" class="text-gray-800 font-display uppercase leading-none py-2 hover:text-chromatic">Portfolio</a>
 				</li>
-				<!-- <li>
-					<a href="#" class="font-display uppercase">About</a>
-				</li> -->
+				<li>
+					<!-- <a href="#" class="font-display uppercase">About</a> -->
+					<ThemeSelector></ThemeSelector>
+				</li>
 			</ul>
 	</div>
 	</div>

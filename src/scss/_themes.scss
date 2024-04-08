@@ -1,0 +1,12 @@
+
+[data-theme="light"] {
+	--color-primary: theme(colors.slate.700);
+	--color-accent-1: 0, 242, 234;
+	--color-accent-2: 255, 0, 80;
+}
+
+[data-theme="dark"] {
+	--color-primary: ;
+	--color-accent-1: 0, 242, 234;
+	--color-accent-2: 255, 0, 80;
+}

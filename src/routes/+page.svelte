@@ -124,7 +124,7 @@
 	<div class="content-pane">
 		<div class="flex flex-col md:flex-row items-center gap-6 mx-4">
 			<!-- <img id="logo" src="favicon.png" width="128" height="128" draggable="false" alt="Adam Miller's logo" class="bg-white rounded-3xl shadow-lg p-2"> -->
-			<img in:fade src="headshot.png" width="256" height="256" draggable="false" alt="Adam Miller's logo" class="w-56 md:w-72 xl:w-96 rounded-3xl hero-img-clip">
+			<img src="headshot.png" width="256" height="256" draggable="false" alt="Adam Miller's logo" class="w-56 md:w-72 xl:w-96 rounded-3xl hero-img-clip">
 			<svg viewBox="0 0 478.9 448.2" width="0" height="0"><clipPath id="blob2" clipPathUnits="objectBoundingBox" transform="scale(0.002088, 0.002231)"><path class="st0" d="M360.5,34.5c23.8,31,24,83,46.5,126.5s67.3,78.5,71.6,113.7c4.2,35.2-32,70.6-66.1,105.1s-66.2,68-101.5,68.4 c-35.4,0.5-74.1-32.2-106.4-55.7c-32.4-23.5-58.4-37.9-99.1-55.8C64.8,318.8,9.3,297.5,1.1,266.9c-8.2-30.6,30.8-70.5,61.8-103.9 c30.9-33.4,53.9-60.3,82.4-89.1C173.8,45,207.8,14.4,248.6,4C289.3-6.4,336.7,3.5,360.5,34.5z"/></clipPath></svg>
 			<div class="text-start">
 				<div class="stripe-heading" style="margin:0;">
