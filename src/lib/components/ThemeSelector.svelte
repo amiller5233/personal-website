@@ -29,7 +29,7 @@
 
 <div class="relative inline-block text-left">
 	<div>
-		<button on:click={() => (open = !open)} class="rounded-md px-3 py-2" id="menu-button" type="button" aria-expanded="true" aria-haspopup="true">
+		<button on:click={() => (open = !open)} class="text-emphasis rounded-md px-3 py-2" id="menu-button" type="button" aria-expanded="true" aria-haspopup="true">
 			<svelte:component this={themes[selectedThemeKey].icon} />
 		</button>
 	</div>

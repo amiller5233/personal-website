@@ -44,7 +44,7 @@ h1, h2, h3, h4, h5, h6 {
 		left: 0;
 		width: 100%;
 		height: 10vh;
-		background: linear-gradient(180deg, transparent, #ffffff);
+		background: linear-gradient(180deg, transparent, var(--color-body-bg));
 	}
 	.content-pane {
 		position: relative;

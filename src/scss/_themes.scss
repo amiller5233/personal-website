@@ -1,12 +1,18 @@
 
 [data-theme="light"] {
-	--color-primary: theme(colors.slate.700);
+	--color-body: theme(colors.slate.700);
+	--color-body-bg: theme(colors.white);
+	--color-body-secondary-bg: theme(colors.gray.100);
+	--color-emphasis: theme(colors.black);
 	--color-accent-1: 0, 242, 234;
 	--color-accent-2: 255, 0, 80;
 }
 
 [data-theme="dark"] {
-	--color-primary: ;
+	--color-body: theme(colors.slate.400);
+	--color-body-bg: theme(colors.slate.900);
+	--color-body-secondary-bg: theme(colors.slate.800);
+	--color-emphasis: theme(colors.white);
 	--color-accent-1: 0, 242, 234;
 	--color-accent-2: 255, 0, 80;
 }
