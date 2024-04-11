@@ -5,7 +5,7 @@
 	export let hoverClass: string = 'hover:bg-cyan-500';
 </script>
 
-<a href="{href}" class="flex items-top gap-4 rounded-lg border shadow-md p-4 {hoverClass} hover:bg-opacity-10 transition-colors">
+<a href="{href}" class="flex items-top gap-4 border border-gray-400 shadow-md p-4 {hoverClass} hover:bg-opacity-10 hover:shadow-square transition-all">
 	<div class="p-2">
 		<slot></slot>
 	</div>
