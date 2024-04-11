@@ -1,12 +1,16 @@
 
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { scale } from 'svelte/transition';
 	import IconSun from '$lib/components/icons/IconSun.svelte';
 	import IconMoonStars from '$lib/components/icons/IconMoonStars.svelte';
 	import IconDisplay from '$lib/components/icons/IconDisplay.svelte';
+	import IconCheck from '$lib/components/icons/IconCheck.svelte';
+
+	type ThemeKey = 'light' | 'dark' | 'auto';
 	
 	const themes = {
-		default: {
+		light: {
 			icon: IconSun
 		},
 		dark: {
@@ -18,19 +22,30 @@
 	const transitionScaleOut = { duration: 100, start: 0.95 };
 
 	let open = false;
-	let selectedThemeKey: 'default' | 'dark' | 'system' = 'default';
+	let selectedThemeKey: ThemeKey;
 
-	function onSelectTheme(theme) {
-		// this function is kept in app.html
-		setTheme(theme)
+	onMount(() => {
+		selectedThemeKey = document.documentElement.getAttribute('data-theme');
+	});
+
+	function onSelectTheme(theme: ThemeKey) {
+		if (theme == 'auto') {
+			theme = getPreferredTheme();
+		}
+		selectedThemeKey = theme;
+
+		setStoredTheme(theme);
+		setTheme(theme);
 		open = false;
 	}
 </script>
 
 <div class="relative inline-block text-left">
 	<div>
-		<button on:click={() => (open = !open)} class="text-emphasis rounded-md px-3 py-2" id="menu-button" type="button" aria-expanded="true" aria-haspopup="true">
+		<button on:click={() => (open = !open)} class="text-emphasis rounded-md px-2 py-2" id="menu-button" type="button" aria-expanded="true" aria-haspopup="true">
+			{#if selectedThemeKey}
 			<svelte:component this={themes[selectedThemeKey].icon} />
+			{/if}
 		</button>
 	</div>
 
@@ -51,10 +66,20 @@
 			<button on:click={() => onSelectTheme('light')} class="flex items-center gap-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 text-start leading-none w-full px-4 py-2" type="button" role="menuitem" tabindex="-1" id="menu-item-0">
 				<IconSun></IconSun>
 				Light
+				{#if selectedThemeKey==='light'}
+				<div class="ms-auto">
+					<IconCheck></IconCheck>
+				</div>
+				{/if}
 			</button>
 			<button on:click={() => onSelectTheme('dark')} class="flex items-center gap-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 text-start leading-none w-full px-4 py-2" type="button" role="menuitem" tabindex="-1" id="menu-item-1">
 				<IconMoonStars></IconMoonStars>
 				Dark
+				{#if selectedThemeKey==='dark'}
+				<div class="ms-auto">
+					<IconCheck></IconCheck>
+				</div>
+				{/if}
 			</button>
 			<button on:click={() => onSelectTheme('auto')} class="flex items-center gap-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 text-start leading-none w-full px-4 py-2" type="button" role="menuitem" tabindex="-1" id="menu-item-2">
 				<IconDisplay></IconDisplay>
