@@ -16,17 +16,17 @@
 
 		<!-- theme -->
 		<script type="text/javascript">
-			const getStoredTheme = () => localStorage.getItem('theme')
-			const setStoredTheme = theme => localStorage.setItem('theme', theme)
+			const getStoredTheme = () => localStorage.getItem('theme');
+			const setStoredTheme = theme => localStorage.setItem('theme', theme);
 
 			const getPreferredTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 			const getDefaultTheme = () => {
-				const storedTheme = getStoredTheme()
+				const storedTheme = getStoredTheme();
 				if (storedTheme) {
-					return storedTheme
+					return storedTheme;
 				}
-				return getPreferredTheme()
+				return getPreferredTheme();
 			}
 
 			const setTheme = theme => {
@@ -40,11 +40,11 @@
 			setTheme(getDefaultTheme());
 
 			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-				const storedTheme = getStoredTheme()
+				const storedTheme = getStoredTheme();
 				if (storedTheme !== 'light' && storedTheme !== 'dark') {
-					setTheme(getDefaultTheme())
+					setTheme(getDefaultTheme());
 				}
-			})
+			});
 		</script>
 	</head>
 	<body data-sveltekit-preload-data="hover" class="text-body bg-body-bg">
