@@ -14,8 +14,40 @@
 
 		%sveltekit.head%
 
+		<!-- theme -->
+		<script type="text/javascript">
+			const getStoredTheme = () => localStorage.getItem('theme');
+			const setStoredTheme = theme => localStorage.setItem('theme', theme);
+
+			const getPreferredTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+			const getDefaultTheme = () => {
+				const storedTheme = getStoredTheme();
+				if (storedTheme) {
+					return storedTheme;
+				}
+				return getPreferredTheme();
+			}
+
+			const setTheme = theme => {
+				if (theme === 'auto') {
+					document.documentElement.setAttribute('data-theme', getPreferredTheme());
+				} else {
+					document.documentElement.setAttribute('data-theme', theme);
+				}
+			}
+
+			setTheme(getDefaultTheme());
+
+			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+				const storedTheme = getStoredTheme();
+				if (storedTheme !== 'light' && storedTheme !== 'dark') {
+					setTheme(getDefaultTheme());
+				}
+			});
+		</script>
 	</head>
-	<body data-sveltekit-preload-data="hover">
+	<body data-sveltekit-preload-data="hover" class="text-body bg-body-bg">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
